@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en" class="theme-dark">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>VRChat Config Generator</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
+	<link rel="stylesheet" type="text/css" href="css/bulma-slider.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/dark.min.css">
+	<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+	<script src="https://kit.fontawesome.com/6147078284.js" crossorigin="anonymous"></script>
+	<script src="js/bulma-slider.min.js"></script>
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://oneVR.dev/config-generator">
+	<meta property="og:title" content="VRChat Config Generator">
+	<meta property="og:description" content="Easy way to configure and download a config file for VRChat without having to look through the documentation for it.">
+	<meta property="og:image" content="https://oneVR.dev/ProfilePicture.png">
+	<meta name="theme-color" content="#619BFE">
+</head>
+<body>
+	<div class="container is-max-desktop">
+		<div class="card m-4">
+			<div class="card-content">
+				<nav class="breadcrumb" aria-label="breadcrumbs">
+					<ul>
+						<li><a href="/">Home</a></li>
+						<li class="is-active"><a href="#" aria-current="page">VRChat Config Generator</a></li>
+					</ul>
+				</nav>
+				<div class="content">
+					<h1 class="title is-1">VRChat Config Generator</h1>
+
+					<p>Values left empty or not included in the final config use the default value. Press preview to see the file before downloading.</p>
+
+					<p>If you want to report an issue or request a feature contact me at: <a href="mailto:15145@pm.me">15145@pm.me</a></p>
+
+					<label class="checkbox">
+						<input type="checkbox" id="featureDescriptionToggle" />
+						Enable Feature Descriptions
+					</label>
+
+					<h3 class="title is-3">Cache</h3>
+
+					<div class="field">
+						<label class="label">Cache Size (in GB)</label>
+						<div class="control">
+							<input class="input validate-value-range" id="cacheSize" data-minimum-value="20" type="number" min="20" placeholder="Default 20 GB">
+						</div>
+					</div>
+
+					<article class="message feature-description is-hidden">
+						<div class="message-body">
+							Can only be set to equal or be higher than the default but not lower. Can be slightly larger or smaller than the value set depending on the size of assets cached.
+						</div>
+					</article>
+
+					<div class="field">
+						<label class="label">Cache Expiry (in days)</label>
+						<div class="control">
+							<input class="input validate-value-range" id="cacheExpiry" data-minimum-value="30" type="number" placeholder="Default 30 days">
+						</div>
+					</div>
+
+					<article class="message feature-description is-hidden">
+						<div class="message-body">
+							Can only be set to equal or be higher than the default but not lower. If a cache file has not been accessed in the set days it will be removed.
+						</div>
+					</article>
+
+					<div class="field">
+						<label class="label">Cache Directory</label>
+						<div class="control is-expanded">
+							<input class="input validate-folder-input" type="text" id="cacheDirectory" placeholder="Leave empty for default">
+						</div>
+					</div>
+
+					<article class="message feature-description is-hidden">
+						<div class="message-body">
+							Copy a path to a folder from the File Explorer. If the path set is invalid the cache location will not change. Stored in <code contenteditable>%LocalAppdata%Low\VRChat\VRChat</code> by default. Recommended to be set in a subfolder.
+						</div>
+					</article>
+
+					<h3 class="title is-3">Camera & Screenshots</h3>
+
+					<div class="field">
+						<label class="label">Camera Resolution Width</label>
+						<div class="control">
+							<input class="input validate-value-range" type="text" id="cameraResolutionWidth" data-minimum-value="1280" data-maximum-value="7680" placeholder="1280 to 7680">
+						</div>
+					</div>
+
+					<div class="field">
+						<label class="label">Camera Resolution Height</label>
+						<div class="control is-expanded">
+							<input class="input validate-value-range" type="text" id="cameraResolutionHeight" data-minimum-value="720" data-maximum-value="4320" placeholder="720 to 4320">
+						</div>
+					</div>
+
+					<div class="field is-grouped is-grouped-centered" id="cameraResolutionSelector">
+						<p class="control">
+							<button class="button is-light">
+								720p
+							</button>
+						</p>
+						<p class="control">
+							<a class="button is-light">
+								1080p
+							</a>
+						</p>
+						<p class="control">
+							<a class="button is-light">
+								1440p
+							</a>
+						</p>
+						<p class="control">
+							<a class="button is-light">
+								2160p
+							</a>
+						</p>
+						<p class="control">
+							<a class="button is-light">
+								4320p
+							</a>
+						</p>
+					</div>
+
+					<article class="message feature-description is-hidden">
+						<div class="message-body">
+							Adjusts the size of pictures taken with the VR camera. Will only be active if you set it to be used in the camera settings.
+						</div>
+					</article>
+
+					<div class="field">
+						<label class="label">Screenshot Resolution Width</label>
+						<div class="control">
+							<input class="input" type="text" id="screenshotResolutionWidth" placeholder="1280 to 3840">
+						</div>
+					</div>
+
+					<div class="field">
+						<label class="label">Screenshot Resolution Height</label>
+						<div class="control">
+							<input class="input" type="text" id="screenshotResolutionHeight" placeholder="720 to 2160">
+						</div>
+					</div>
+
+					<div class="field is-grouped is-grouped-centered" id="screenshotResolutionSelector">
+						<p class="control">
+							<button class="button is-light">
+								720p
+							</button>
+						</p>
+						<p class="control">
+							<a class="button is-light">
+								1080p
+							</a>
+						</p>
+						<p class="control">
+							<a class="button is-light">
+								1440p
+							</a>
+						</p>
+						<p class="control">
+							<a class="button is-light">
+								2160p
+							</a>
+						</p>
+					</div>
+
+					<article class="message feature-description is-hidden">
+						<div class="message-body">
+							Adjusts the size of screenshots taken with <kbd>F12</kbd> key on your keyboard.
+						</div>
+					</article>
+
+					<div class="field">
+						<label class="label">Picture Output Folder</label>
+						<div class="control is-expanded">
+							<input class="input validate-folder-input" type="text" id="pictureOutputFolder" placeholder="Leave empty for default">
+						</div>
+					</div>
+
+					<article class="message feature-description is-hidden">
+						<div class="message-body">
+							Copy a path to a folder from the File Explorer. By default will be saved in your <a target="_blank" href="https://support.microsoft.com/en-us/windows/how-to-get-to-the-desktop-documents-and-pictures-folders-in-file-explorer-3370f06b-0f8d-4b25-be9a-3ee54f381e3d">Pictures</a> folder. Changing this will cause new pictures to be saved in the folder set old pictures will stay where you last had it set.
+						</div>
+					</article>
+
+					<div class="field">
+						<label class="label">Picture Output Split by Date (default Yes)</label>
+						<div class="control">
+							<label class="radio">
+								<input type="radio" name="splitByDate">
+								Yes
+							</label>
+							<label class="radio">
+								<input type="radio" name="splitByDate">
+								No
+							</label>
+						</div>
+					</div>
+
+					<article class="message feature-description is-hidden">
+						<div class="message-body">
+							Setting this to No causes pictures to not be sorted into YYYY-MM folders inside your Pictures Output Folder.
+						</div>
+					</article>
+
+					<h3 class="title is-3">Other</h3>
+
+					<div class="control">
+						<label class="label">First-Person Steadycam FOV</label>
+						<input id="steadycamFOV" class="slider has-output is-fullwidth" min="30" max="110" value="30" step="1" type="range">
+						<output for="steadycamFOV">30</output>
+					</div>
+
+					<article class="message feature-description is-hidden">
+						<div class="message-body">
+							Adjusts the field of view of the first person view steadycam. The value represents the vertical FOV. Most HMDs have a default value of 50-55. If you're looking to visibly increase this FOV for your viewers, try values of 65-70.
+						</div>
+					</article>
+
+					<div class="field">
+						<label class="label">Disable Rich Presence (default No)</label>
+						<div class="control">
+							<label class="radio">
+								<input type="radio" name="disableRichPresence">
+								Yes
+							</label>
+							<label class="radio">
+								<input type="radio" name="disableRichPresence">
+								No
+							</label>
+						</div>
+					</div>
+
+					<article class="message feature-description is-hidden">
+						<div class="message-body">
+							Disables Rich Presence integration with Steam and Discord.
+						</div>
+					</article>
+
+					<div class="field is-grouped is-grouped-centered">
+						<div class="control">
+							<button class="button is-info js-modal-trigger" data-target="modal-js-example">Preview</button>
+						</div>
+						<div class="control">
+							<button class="button is-primary" id="downloadButton">Download</button>
+						</div>
+					</div>
+
+				</div>
+
+				<p>The downloaded config.json needs to be saved at: <code contenteditable>%LocalAppdata%Low\VRChat\VRChat</code> <a class="is-pulled-right" target="_blank" href="https://docs.vrchat.com/docs/configuration-file">Official Documentation</a></p>
+
+				<div id="modal-js-example" class="modal">
+					<div class="modal-background"></div>
+
+					<div class="modal-content">
+						<div class="box">
+							<p>Currently generated JSON config</p>
+							<pre>
+								<code class="language-json" id="jsonPreview">
+								</code>
+							</pre>
+						</div>
+					</div>
+
+					<button class="modal-close is-large" aria-label="close"></button>
+				</div>
+
+				<script type="text/javascript">
+					document.addEventListener('DOMContentLoaded', (event) => {
+						bulmaSlider.attach();
+						hljs.highlightAll();
+
+						const cameraContainer = document.getElementById('cameraResolutionSelector');
+						const cameraWidthInput = document.getElementById('cameraResolutionWidth');
+						const cameraHeightInput = document.getElementById('cameraResolutionHeight');
+
+						cameraContainer.addEventListener('click', (event) => {
+							if (event.target.classList.contains('button')) {
+								const resolution = event.target.textContent.trim();
+								switch (resolution) {
+								case '720p':
+									cameraWidthInput.value = '1280';
+									cameraHeightInput.value = '720';
+									break;
+								case '1080p':
+									cameraWidthInput.value = '1920';
+									cameraHeightInput.value = '1080';
+									break;
+								case '1440p':
+									cameraWidthInput.value = '2560';
+									cameraHeightInput.value = '1440';
+									break;
+								case '2160p':
+									cameraWidthInput.value = '3840';
+									cameraHeightInput.value = '2160';
+									break;
+								case '4320p':
+									cameraWidthInput.value = '7680';
+									cameraHeightInput.value = '4320';
+									break;
+								default:
+									cameraWidthInput.value = '';
+									cameraHeightInput.value = '';
+									break;
+								}
+								cameraWidthInput.classList.add('is-success');
+								cameraHeightInput.classList.add('is-success');
+							}
+						});
+
+						const screenshotContainer = document.getElementById('screenshotResolutionSelector');
+						const screenshotWidthInput = document.getElementById('screenshotResolutionWidth');
+						const screenshotHeightInput = document.getElementById('screenshotResolutionHeight');
+
+						screenshotContainer.addEventListener('click', (event) => {
+							if (event.target.classList.contains('button')) {
+								const resolution = event.target.textContent.trim();
+								switch (resolution) {
+								case '720p':
+									screenshotWidthInput.value = '1280';
+									screenshotHeightInput.value = '720';
+									break;
+								case '1080p':
+									screenshotWidthInput.value = '1920';
+									screenshotHeightInput.value = '1080';
+									break;
+								case '1440p':
+									screenshotWidthInput.value = '2560';
+									screenshotHeightInput.value = '1440';
+									break;
+								case '2160p':
+									screenshotWidthInput.value = '3840';
+									screenshotHeightInput.value = '2160';
+									break;
+								case '4320p':
+									screenshotWidthInput.value = '7680';
+									screenshotHeightInput.value = '4320';
+									break;
+								default:
+									screenshotWidthInput.value = '';
+									screenshotHeightInput.value = '';
+									break;
+								}
+								screenshotWidthInput.classList.add('is-success');
+								screenshotHeightInput.classList.add('is-success');
+							}
+						});
+
+						const folderInputs = document.querySelectorAll('.validate-folder-input');
+
+						folderInputs.forEach(input => {
+							input.addEventListener('blur', () => {
+								let value = input.value;
+								if (value) {
+									value = value.replace(/\\/g, '/');
+									if (!value.endsWith('/')) {
+										value += '/';
+									}
+									input.value = value;
+									input.classList.add('is-success');
+								}
+							});
+						});
+
+						const cacheSizeInputs = document.querySelectorAll('.validate-value-range');
+
+						cacheSizeInputs.forEach(input => {
+							input.addEventListener('blur', () => {
+								if (input.value == "") {
+									input.classList.remove('is-success');
+								} else {
+									let value = parseInt(input.value, 10);
+									let minimum = parseInt(input.getAttribute('data-minimum-value'), 10);
+									if (value < minimum) {
+										input.value = minimum;
+									} else if (input.hasAttribute('data-maximum-value')) {
+										let maximum = parseInt(input.getAttribute('data-maximum-value'), 10);
+										if (value > maximum) {
+											input.value = maximum;
+										}
+									}
+									input.classList.add('is-success');
+								}
+							});
+						});
+
+						function openModal($el) {
+							$el.classList.add('is-active');
+						}
+
+						function closeModal($el) {
+							$el.classList.remove('is-active');
+						}
+
+						function closeAllModals() {
+							(document.querySelectorAll('.modal') || []).forEach(($modal) => {
+								closeModal($modal);
+							});
+						}
+
+						(document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
+							const modal = $trigger.dataset.target;
+							const $target = document.getElementById(modal);
+
+							$trigger.addEventListener('click', () => {
+								const jsonConfig = generateJSON();
+								document.getElementById('jsonPreview').textContent = jsonConfig;
+								openModal($target);
+							});
+						});
+
+						(document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
+							const $target = $close.closest('.modal');
+
+							$close.addEventListener('click', () => {
+								closeModal($target);
+							});
+						});
+
+						document.addEventListener('keydown', (event) => {
+							if (event.key === "Escape") {
+								closeAllModals();
+							}
+						});
+
+						document.getElementById('downloadButton').addEventListener('click', () => {
+							const jsonConfig = generateJSON();
+							const blob = new Blob([jsonConfig], { type: "application/json" });
+							const url = URL.createObjectURL(blob);
+							const a = document.createElement('a');
+							a.href = url;
+							a.download = "config.json";
+							document.body.appendChild(a);
+							a.click();
+							document.body.removeChild(a);
+							URL.revokeObjectURL(url);
+						});
+
+						const checkbox = document.getElementById('featureDescriptionToggle');
+						const targetElements = document.querySelectorAll('.feature-description');
+
+						checkbox.addEventListener('change', (event) => {
+							targetElements.forEach(element => {
+								if (checkbox.checked) {
+									element.classList.remove("is-hidden");
+								} else {
+									element.classList.add("is-hidden");
+								}
+							});
+						});
+
+						function generateJSON() {
+							const cacheSize = document.getElementById('cacheSize').value;
+							const cacheExpiry = document.getElementById('cacheExpiry').value;
+							const cacheDirectory = document.getElementById('cacheDirectory').value;
+							const cameraResolutionWidth = document.getElementById('cameraResolutionWidth').value;
+							const cameraResolutionHeight = document.getElementById('cameraResolutionHeight').value;
+							const screenshotResolutionWidth = document.getElementById('screenshotResolutionWidth').value;
+							const screenshotResolutionHeight = document.getElementById('screenshotResolutionHeight').value;
+							const pictureOutputFolder = document.getElementById('pictureOutputFolder').value;
+							const splitByDateChecked = document.querySelector('input[name="splitByDate"]:checked');
+							const steadycamFOV = document.getElementById('steadycamFOV').value;
+							const disableRichPresenceChecked = document.querySelector('input[name="disableRichPresence"]:checked');
+
+							const config = {};
+
+							if (cacheSize) {
+								config.cache_size = Number(cacheSize);
+							}
+
+							if (cacheExpiry) {
+								config.cache_expiry_delay = Number(cacheExpiry);
+							}
+
+							if (cacheDirectory) {
+								config.cache_directory = cacheDirectory;
+							}
+
+							if (cameraResolutionWidth) {
+								config.camera_res_width = Number(cameraResolutionWidth);
+							}
+
+							if (cameraResolutionHeight) {
+								config.camera_res_height = Number(cameraResolutionHeight);
+							}
+
+							if (screenshotResolutionWidth) {
+								config.screenshot_res_width = Number(screenshotResolutionWidth);
+							}
+
+							if (screenshotResolutionHeight) {
+								config.screenshot_res_height = Number(screenshotResolutionHeight);
+							}
+
+							if (pictureOutputFolder) {
+								config.picture_output_folder = pictureOutputFolder;
+							}
+
+							if (splitByDateChecked) {
+								const splitByDate = splitByDateChecked.value === "Yes";
+								config.picture_output_split_by_date = splitByDate;
+							}
+
+							if (steadycamFOV && steadycamFOV != 30) {
+								config.fpv_steadycam_fov = steadycamFOV;
+							}
+
+							if (disableRichPresenceChecked) {
+								const disableRichPresence = disableRichPresenceChecked.value === "Yes";
+								config.disableRichPresence = disableRichPresence;
+							}
+
+							return JSON.stringify(config, null, 4);
+						}
+					});
+
+				</script>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
