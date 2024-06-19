@@ -214,8 +214,8 @@
 
 					<div class="control">
 						<label class="label">First-Person Steadycam FOV</label>
-						<input id="steadycamFOV" class="slider has-output is-fullwidth" min="30" max="110" value="30" step="1" type="range">
-						<output for="steadycamFOV">30</output>
+						<input id="steadycamFOV" class="slider has-output is-fullwidth" min="30" max="110" value="0" step="1" type="range">
+						<output for="steadycamFOV">0</output>
 					</div>
 
 					<article class="message feature-description is-hidden">
@@ -389,6 +389,13 @@
 							});
 						});
 
+						const steadycamFOVSlider = document.getElementById('steadycamFOV');
+						let steadycamFOVSliderChanged = false;
+
+						steadycamFOVSlider.addEventListener('input', () => {
+							steadycamFOVSliderChanged = true;
+						});
+
 						function openModal($el) {
 							$el.classList.add('is-active');
 						}
@@ -506,7 +513,7 @@
 								config.picture_output_split_by_date = splitByDate;
 							}
 
-							if (steadycamFOV && steadycamFOV != 30) {
+							if (steadycamFOV && steadycamFOVSliderChanged) {
 								config.fpv_steadycam_fov = steadycamFOV;
 							}
 
