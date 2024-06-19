@@ -16,7 +16,7 @@
 	<meta property="og:type" content="website">
 	<meta property="og:url" content="https://oneVR.dev/config-generator">
 	<meta property="og:title" content="VRChat Config Generator">
-	<meta property="og:description" content="Easy way to configure and download the config.json configuration file for VRChat without having to look through the documentation for it.">
+	<meta property="og:description" name="description" content="Easy way to configure and download the config.json configuration file for VRChat without having to look through the documentation for it.">
 	<meta property="og:image" content="https://oneVR.dev/ProfilePicture.png">
 	<meta name="theme-color" content="#619BFE">
 </head>
@@ -42,7 +42,7 @@
 						Show Feature Descriptions
 					</label>
 
-					<h3 class="title is-3">Cache</h3>
+					<h2 class="title is-3">Cache</h2>
 
 					<div class="field">
 						<label class="label">Cache Size (in GB)</label>
@@ -83,7 +83,7 @@
 						</div>
 					</article>
 
-					<h3 class="title is-3">Camera & Screenshots</h3>
+					<h2 class="title is-3">Camera & Screenshots</h2>
 
 					<div class="field">
 						<label class="label">Camera Resolution Width</label>
@@ -106,24 +106,24 @@
 							</button>
 						</p>
 						<p class="control">
-							<a class="button is-light">
+							<button class="button is-light">
 								1080p
-							</a>
+							</button>
 						</p>
 						<p class="control">
-							<a class="button is-light">
+							<button class="button is-light">
 								1440p
-							</a>
+							</button>
 						</p>
 						<p class="control">
-							<a class="button is-light">
+							<button class="button is-light">
 								2160p
-							</a>
+							</button>
 						</p>
 						<p class="control">
-							<a class="button is-light">
+							<button class="button is-light">
 								4320p
-							</a>
+							</button>
 						</p>
 					</div>
 
@@ -154,19 +154,19 @@
 							</button>
 						</p>
 						<p class="control">
-							<a class="button is-light">
+							<button class="button is-light">
 								1080p
-							</a>
+							</button>
 						</p>
 						<p class="control">
-							<a class="button is-light">
+							<button class="button is-light">
 								1440p
-							</a>
+							</button>
 						</p>
 						<p class="control">
-							<a class="button is-light">
+							<button class="button is-light">
 								2160p
-							</a>
+							</button>
 						</p>
 					</div>
 
@@ -209,12 +209,14 @@
 						</div>
 					</article>
 
-					<h3 class="title is-3">Other</h3>
+					<h2 class="title is-3">Other</h2>
 
-					<div class="control">
+					<div class="field">
 						<label class="label">First-Person Steadycam FOV</label>
-						<input id="steadycamFOV" class="slider has-output is-fullwidth" min="30" max="110" value="0" step="1" type="range">
-						<output for="steadycamFOV">0</output>
+						<div class="control">
+							<input id="steadycamFOV" class="slider has-output is-fullwidth" min="30" max="110" value="0" step="1" type="range">
+							<output for="steadycamFOV">0</output>
+						</div>
 					</div>
 
 					<article class="message feature-description is-hidden">
