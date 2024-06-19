@@ -246,7 +246,7 @@
 
 					<div class="field is-grouped is-grouped-centered">
 						<div class="control">
-							<button class="button is-info js-modal-trigger" data-target="modal-js-example">Preview</button>
+							<button class="button is-info js-modal-trigger" data-target="json-modal">Preview</button>
 						</div>
 						<div class="control">
 							<button class="button is-primary" id="downloadButton">Download</button>
@@ -257,20 +257,17 @@
 
 				<p>The downloaded config.json needs to be saved at: <code contenteditable>%LocalAppdata%Low\VRChat\VRChat</code> <a class="is-pulled-right" target="_blank" href="https://docs.vrchat.com/docs/configuration-file">Official Documentation</a></p>
 
-				<div id="modal-js-example" class="modal">
+				<div id="json-modal" class="modal">
 					<div class="modal-background"></div>
-
-					<div class="modal-content">
-						<div class="box">
-							<p>Currently generated JSON config</p>
-							<pre>
-								<code class="language-json" id="jsonPreview">
-								</code>
-							</pre>
-						</div>
+					<div class="modal-card">
+						<header class="modal-card-head">
+							<p class="modal-card-title">Currently generated JSON config</p>
+						</header>
+						<pre class="modal-card-body">
+							<code class="language-json" id="jsonPreview">
+							</code>
+						</pre>
 					</div>
-
-					<button class="modal-close is-large" aria-label="close"></button>
 				</div>
 
 				<script type="text/javascript">
