@@ -1,0 +1,7 @@
+.field .delete {
+	display: none;
+}
+
+.field:hover .delete{
+	display: inline-flex;
+}

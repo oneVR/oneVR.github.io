@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
 	<link rel="stylesheet" type="text/css" href="css/bulma-slider.min.css">
 	<link rel="stylesheet" type="text/css" href="css/hint.min.css">
+	<link rel="stylesheet" type="text/css" href="css/custom.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/dark.min.css">
 	<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
 	<script src="js/bulma-slider.min.js"></script>
@@ -191,7 +192,7 @@
 					</article>
 
 					<div class="field">
-						<label class="label">Picture Output Split by Date (default Yes)</label>
+						<label class="label">Picture Output Split by Date (default Yes) <button class="delete"></button></label>
 						<div class="control">
 							<label class="radio">
 								<input type="radio" name="splitByDate">
@@ -213,9 +214,9 @@
 					<h2 class="title is-3">Other</h2>
 
 					<div class="field">
-						<label class="label">First-Person Steadycam FOV</label>
+						<label class="label">First-Person Steadycam FOV <button class="delete"></button></label>
 						<div class="control">
-							<input id="steadycamFOV" class="slider has-output is-fullwidth" min="30" max="110" value="0" step="1" type="range">
+							<input id="steadycamFOV" class="slider has-output is-fullwidth" min="30" max="110" value="30" step="1" type="range">
 							<output for="steadycamFOV">0</output>
 						</div>
 					</div>
@@ -227,7 +228,7 @@
 					</article>
 
 					<div class="field">
-						<label class="label">Disable Rich Presence (default No)</label>
+						<label class="label">Disable Rich Presence (default No) <button class="delete"></button></label>
 						<div class="control">
 							<label class="radio">
 								<input type="radio" name="disableRichPresence">
@@ -483,6 +484,31 @@
 										element.setAttribute('aria-label', ariaLabel);
 									}, 500);
 								});
+							});
+						});
+
+						const deleteButtons = document.querySelectorAll('.delete');
+
+						deleteButtons.forEach(button => {
+							button.addEventListener('click', () => {
+								const parentField = button.closest('.field');
+
+								if (parentField) {
+									const radioInputs = parentField.querySelectorAll('input[type="radio"]');
+									const rangeInput = parentField.querySelector('input[type="range"]');
+									const output = parentField.querySelector('output');
+
+									radioInputs.forEach(input => {
+										input.checked = false;
+									});
+
+									if (rangeInput) {
+										rangeInput.value = 0;
+										if (output) {
+											output.textContent = 0;
+										}
+									}
+								}
 							});
 						});
 
