@@ -192,11 +192,11 @@
 						<label class="label">Picture Output Split by Date (default Yes) <button class="delete"></button></label>
 						<div class="control">
 							<label class="radio">
-								<input type="radio" name="splitByDate">
+								<input type="radio" name="splitByDate" value="true">
 								Yes
 							</label>
 							<label class="radio">
-								<input type="radio" name="splitByDate">
+								<input type="radio" name="splitByDate" value="false">
 								No
 							</label>
 						</div>
@@ -228,11 +228,11 @@
 						<label class="label">Disable Rich Presence (default No) <button class="delete"></button></label>
 						<div class="control">
 							<label class="radio">
-								<input type="radio" name="disableRichPresence">
+								<input type="radio" name="disableRichPresence" value="true">
 								Yes
 							</label>
 							<label class="radio">
-								<input type="radio" name="disableRichPresence">
+								<input type="radio" name="disableRichPresence" value="false">
 								No
 							</label>
 						</div>
@@ -557,8 +557,7 @@
 							}
 
 							if (splitByDateChecked) {
-								const splitByDate = splitByDateChecked.value === "Yes";
-								config.picture_output_split_by_date = splitByDate;
+								config.picture_output_split_by_date = JSON.parse(splitByDateChecked.value);
 							}
 
 							if (steadycamFOV && steadycamFOVSliderChanged) {
@@ -566,8 +565,7 @@
 							}
 
 							if (disableRichPresenceChecked) {
-								const disableRichPresence = disableRichPresenceChecked.value === "Yes";
-								config.disableRichPresence = disableRichPresence;
+								config.disableRichPresence = JSON.parse(disableRichPresenceChecked.value);
 							}
 
 							return JSON.stringify(config, null, 4);
