@@ -6,6 +6,7 @@
 	<title>VRChat Config Generator</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
 	<link rel="stylesheet" type="text/css" href="css/bulma-slider.min.css">
+	<link rel="stylesheet" type="text/css" href="css/hint.min.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/dark.min.css">
 	<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
 	<script src="js/bulma-slider.min.js"></script>
@@ -79,7 +80,7 @@
 
 					<article class="message feature-description is-hidden">
 						<div class="message-body">
-							Copy a path to a folder from the File Explorer. If the path set is invalid the cache location will not change. Stored in <code contenteditable>%LocalAppdata%Low\VRChat\VRChat</code> by default. Recommended to be set in a subfolder.
+							Copy a path to a folder from the File Explorer. If the path set is invalid the cache location will not change. Stored in <code class="is-clickable copy-contents-on-click hint--bottom hint--rounded" aria-label="Click to copy!">%LocalAppdata%Low\VRChat\VRChat</code> by default. Recommended to be set in a subfolder.
 						</div>
 					</article>
 
@@ -256,7 +257,7 @@
 
 				</div>
 
-				<p>The downloaded config.json needs to be saved at: <code contenteditable>%LocalAppdata%Low\VRChat\VRChat</code> <a class="is-pulled-right" target="_blank" href="https://docs.vrchat.com/docs/configuration-file">Official Documentation</a></p>
+				<p>The downloaded config.json needs to be saved at: <code class="is-clickable copy-contents-on-click hint--top hint--rounded" aria-label="Click to copy!">%LocalAppdata%Low\VRChat\VRChat</code> <a class="is-pulled-right" target="_blank" href="https://docs.vrchat.com/docs/configuration-file">Official Documentation</a></p>
 
 				<div id="json-modal" class="modal">
 					<div class="modal-background"></div>
@@ -459,6 +460,29 @@
 								} else {
 									element.classList.add("is-hidden");
 								}
+							});
+						});
+
+						const elements = document.querySelectorAll('.copy-contents-on-click');
+						elements.forEach(element => {
+							element.addEventListener('click', function() {
+								const text = element.textContent;
+								const ariaLabel = element.getAttribute('aria-label');
+								navigator.clipboard.writeText(text).then(() => {
+									element.classList.add('hint--success');
+									element.setAttribute('aria-label', 'Copied!');
+									setTimeout(() => {
+										element.classList.remove('hint--success');
+										element.setAttribute('aria-label', ariaLabel);
+									}, 500);
+								}).catch(err => {
+									element.classList.add('hint--error');
+									element.setAttribute('aria-label', 'Failed to copy!');
+									setTimeout(() => {
+										element.classList.remove('hint--error');
+										element.setAttribute('aria-label', ariaLabel);
+									}, 500);
+								});
 							});
 						});
 
