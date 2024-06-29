@@ -36,7 +36,8 @@
 				<h1 class="title is-1">VRChat Config Generator</h1>
 
 				<p>For values left empty or not included in the final configuration file VRChat will use the default
-					value. Press preview to see the config file before downloading.</p>
+					value. Press preview to see the config file before downloading. Enable feature descriptions below
+					for more details on individual settings.</p>
 
 				<p>If you want to report an issue or request a feature, contact me at <a href="mailto:15145@pm.me">15145@pm.me</a>
 				</p>
@@ -57,7 +58,7 @@
 						<div class="control">
 							<input class="input validate-value-range" id="cacheSize" data-minimum-value="20"
 								   type="number"
-								   min="20" placeholder="Default 20 GB">
+								   min="20" placeholder="Default and minimum value 20 GB">
 						</div>
 					</div>
 					<article class="message feature-description is-hidden">
@@ -72,7 +73,7 @@
 						<div class="control">
 							<input class="input validate-value-range" id="cacheExpiry" data-minimum-value="30"
 								   type="number"
-								   placeholder="Default 30 days">
+								   placeholder="Default and minimum value 30 days">
 						</div>
 					</div>
 					<article class="message feature-description is-hidden">
@@ -86,7 +87,7 @@
 						<label for="cacheDirectory" class="label">Cache Directory</label>
 						<div class="control is-expanded">
 							<input class="input validate-folder-input" type="text" id="cacheDirectory"
-								   placeholder="D:/VRCCache/">
+								   placeholder="Example value: D:/VRCCache/">
 						</div>
 					</div>
 					<article class="message feature-description is-hidden">
@@ -103,14 +104,16 @@
 						<label for="cameraResolutionWidth" class="label">Camera Resolution Width</label>
 						<div class="control">
 							<input class="input validate-value-range" type="number" id="cameraResolutionWidth"
-								   data-minimum-value="1280" data-maximum-value="7680" placeholder="1280 to 7680">
+								   data-minimum-value="1280" data-maximum-value="7680"
+								   placeholder="Accepts a value from 1280 to 7680">
 						</div>
 					</div>
 					<div class="field">
 						<label for="cameraResolutionHeight" class="label">Camera Resolution Height</label>
 						<div class="control is-expanded">
 							<input class="input validate-value-range" type="number" id="cameraResolutionHeight"
-								   data-minimum-value="720" data-maximum-value="4320" placeholder="720 to 4320">
+								   data-minimum-value="720" data-maximum-value="4320"
+								   placeholder="Accepts a value from 720 to 4320">
 						</div>
 					</div>
 					<div class="field is-grouped is-grouped-multiline is-grouped-centered"
@@ -152,7 +155,7 @@
 						<div class="control">
 							<input class="input validate-value-range" type="number" id="screenshotResolutionWidth"
 								   data-minimum-value="1280"
-								   data-maximum-value="3840" placeholder="1280 to 3840">
+								   data-maximum-value="3840" placeholder="Accepts a value from 1280 to 3840">
 						</div>
 					</div>
 					<div class="field">
@@ -160,7 +163,7 @@
 						<div class="control">
 							<input class="input validate-value-range" type="number" id="screenshotResolutionHeight"
 								   data-minimum-value="720"
-								   data-maximum-value="2160" placeholder="720 to 2160">
+								   data-maximum-value="2160" placeholder="Accepts a value from 720 to 2160">
 						</div>
 					</div>
 					<div class="field is-grouped is-grouped-multiline is-grouped-centered"
@@ -195,7 +198,7 @@
 						<label for="pictureOutputFolder" class="label">Picture Output Folder</label>
 						<div class="control is-expanded">
 							<input class="input validate-folder-input" type="text" id="pictureOutputFolder"
-								   placeholder="D:/VRCPictures/">
+								   placeholder="Example value: D:/VRCPictures/">
 						</div>
 					</div>
 					<article class="message feature-description is-hidden">
