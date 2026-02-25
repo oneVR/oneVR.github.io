@@ -195,6 +195,47 @@
 						</div>
 					</article>
 					<div class="field">
+						<label for="cameraSpoutResolutionWidth" class="label">Spout Camera Resolution Width</label>
+						<div class="control">
+							<input class="input validate-value-range" type="number" id="cameraSpoutResolutionWidth" data-minimum-value="1280" data-maximum-value="3840" placeholder="Accepts a value from 1280 to 3840">
+						</div>
+					</div>
+					<div class="field">
+						<label for="cameraSpoutResolutionHeight" class="label">Spout Camera Resolution Height</label>
+						<div class="control">
+							<input class="input validate-value-range" type="number" id="cameraSpoutResolutionHeight" data-minimum-value="720" data-maximum-value="2160" placeholder="Accepts a value from 720 to 2160">
+						</div>
+					</div>
+					<div class="field is-grouped is-grouped-multiline is-grouped-centered"
+						 id="cameraSpoutResolutionSelector">
+						<p class="control">
+							<button class="button is-light" type="button">
+								720p
+							</button>
+						</p>
+						<p class="control">
+							<button class="button is-light" type="button">
+								1080p
+							</button>
+						</p>
+						<p class="control">
+							<button class="button is-light" type="button">
+								1440p
+							</button>
+						</p>
+						<p class="control">
+							<button class="button is-light" type="button">
+								2160p
+							</button>
+						</p>
+					</div>
+					<article class="message feature-description is-hidden">
+						<div class="message-body">
+							Adjust the resolution of the Stream Camera Spout2 output. This resolution is only used if you set
+							it in the stream camera settings.
+						</div>
+					</article>
+					<div class="field">
 						<label for="pictureOutputFolder" class="label">Picture Output Folder</label>
 						<div class="control is-expanded">
 							<input class="input validate-folder-input" type="text" id="pictureOutputFolder"
@@ -435,10 +476,6 @@
                         screenshotWidthInput.value = '3840';
                         screenshotHeightInput.value = '2160';
                         break;
-                    case '4320p':
-                        screenshotWidthInput.value = '7680';
-                        screenshotHeightInput.value = '4320';
-                        break;
                     default:
                         screenshotWidthInput.value = '';
                         screenshotHeightInput.value = '';
@@ -447,6 +484,43 @@
 
                 screenshotWidthInput.classList.add('is-success');
                 screenshotHeightInput.classList.add('is-success');
+
+                updatePreview();
+            }
+        });
+
+		const cameraSpoutContainer = document.getElementById('cameraSpoutResolutionSelector');
+        const cameraSpoutWidthInput = document.getElementById('cameraSpoutResolutionWidth');
+        const cameraSpoutHeightInput = document.getElementById('cameraSpoutResolutionHeight');
+
+        cameraSpoutContainer.addEventListener('click', (event) => {
+            if (event.target.classList.contains('button')) {
+                const resolution = event.target.textContent.trim();
+                switch (resolution) {
+                    case '720p':
+                        cameraSpoutWidthInput.value = '1280';
+                        cameraSpoutHeightInput.value = '720';
+                        break;
+                    case '1080p':
+                        cameraSpoutWidthInput.value = '1920';
+                        cameraSpoutHeightInput.value = '1080';
+                        break;
+                    case '1440p':
+                        cameraSpoutWidthInput.value = '2560';
+                        cameraSpoutHeightInput.value = '1440';
+                        break;
+                    case '2160p':
+                        cameraSpoutWidthInput.value = '3840';
+                        cameraSpoutHeightInput.value = '2160';
+                        break;
+                    default:
+                        cameraSpoutWidthInput.value = '';
+                        cameraSpoutHeightInput.value = '';
+                        break;
+                }
+
+                cameraSpoutWidthInput.classList.add('is-success');
+                cameraSpoutHeightInput.classList.add('is-success');
 
                 updatePreview();
             }
@@ -526,6 +600,8 @@
             const cameraResolutionHeight = document.getElementById('cameraResolutionHeight').value;
             const screenshotResolutionWidth = document.getElementById('screenshotResolutionWidth').value;
             const screenshotResolutionHeight = document.getElementById('screenshotResolutionHeight').value;
+			const cameraSpoutResolutionWidth = document.getElementById('cameraSpoutResolutionWidth').value;
+			const cameraSpoutResolutionHeight = document.getElementById('cameraSpoutResolutionHeight').value;
             const pictureOutputFolder = document.getElementById('pictureOutputFolder').value;
             const splitByDateChecked = document.querySelector('input[name="splitByDate"]:checked');
             const steadycamFOV = document.getElementById('steadycamFOV').value;
@@ -560,6 +636,14 @@
             if (screenshotResolutionHeight) {
                 config.screenshot_res_height = Number(screenshotResolutionHeight);
             }
+
+			if (cameraSpoutResolutionWidth) {
+				config.camera_spout_res_width = Number(cameraSpoutResolutionWidth);
+			}
+
+			if (cameraSpoutResolutionHeight) {
+				config.camera_spout_res_height = Number(cameraSpoutResolutionHeight);
+			}
 
             if (pictureOutputFolder) {
                 config.picture_output_folder = pictureOutputFolder;
