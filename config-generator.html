@@ -233,6 +233,50 @@
 							Output Folder.
 						</div>
 					</article>
+					<div class="field">
+						<label for="spoutResolutionWidth" class="label">Stream Camera Spout2 Output Resolution Width</label>
+						<div class="control">
+							<input class="input validate-value-range" type="number" id="spoutResolutionWidth"
+								   data-minimum-value="1280"
+								   data-maximum-value="3840" placeholder="Accepts a value from 1280 to 3840">
+						</div>
+					</div>
+					<div class="field">
+						<label for="spoutResolutionHeight" class="label">Stream Camera Spout2 Output Resolution Height</label>
+						<div class="control">
+							<input class="input validate-value-range" type="number" id="spoutResolutionHeight"
+								   data-minimum-value="720"
+								   data-maximum-value="2160" placeholder="Accepts a value from 720 to 2160">
+						</div>
+					</div>
+					<div class="field is-grouped is-grouped-multiline is-grouped-centered"
+						 id="spoutResolutionSelector">
+						<p class="control">
+							<button class="button is-light" type="button">
+								720p
+							</button>
+						</p>
+						<p class="control">
+							<button class="button is-light" type="button">
+								1080p
+							</button>
+						</p>
+						<p class="control">
+							<button class="button is-light" type="button">
+								1440p
+							</button>
+						</p>
+						<p class="control">
+							<button class="button is-light" type="button">
+								2160p
+							</button>
+						</p>
+					</div>
+					<article class="message feature-description is-hidden">
+						<div class="message-body">
+							Adjusts the resolution of the Spout2 output from the Stream Camera.
+						</div>
+					</article>
 					<h2 class="title is-3">Other</h2>
 					<div class="field">
 						<label for="steadycamFOV" class="label">First-Person Steadycam FOV
@@ -452,6 +496,43 @@
             }
         });
 
+        const spoutContainer = document.getElementById('spoutResolutionSelector');
+        const spoutWidthInput = document.getElementById('spoutResolutionWidth');
+        const spoutHeightInput = document.getElementById('spoutResolutionHeight');
+
+        spoutContainer.addEventListener('click', (event) => {
+            if (event.target.classList.contains('button')) {
+                const resolution = event.target.textContent.trim();
+                switch (resolution) {
+                    case '720p':
+                        spoutWidthInput.value = '1280';
+                        spoutHeightInput.value = '720';
+                        break;
+                    case '1080p':
+                        spoutWidthInput.value = '1920';
+                        spoutHeightInput.value = '1080';
+                        break;
+                    case '1440p':
+                        spoutWidthInput.value = '2560';
+                        spoutHeightInput.value = '1440';
+                        break;
+                    case '2160p':
+                        spoutWidthInput.value = '3840';
+                        spoutHeightInput.value = '2160';
+                        break;
+                    default:
+                        spoutWidthInput.value = '';
+                        spoutHeightInput.value = '';
+                        break;
+                }
+
+                spoutWidthInput.classList.add('is-success');
+                spoutHeightInput.classList.add('is-success');
+
+                updatePreview();
+            }
+        });
+
         const copyContentsOnClickElements = document.querySelectorAll('.copy-contents-on-click');
 
         copyContentsOnClickElements.forEach(element => {
@@ -527,6 +608,8 @@
             const screenshotResolutionWidth = document.getElementById('screenshotResolutionWidth').value;
             const screenshotResolutionHeight = document.getElementById('screenshotResolutionHeight').value;
             const pictureOutputFolder = document.getElementById('pictureOutputFolder').value;
+            const spoutResolutionWidth = document.getElementById('spoutResolutionWidth').value;
+            const spoutResolutionHeight = document.getElementById('spoutResolutionHeight').value;
             const splitByDateChecked = document.querySelector('input[name="splitByDate"]:checked');
             const steadycamFOV = document.getElementById('steadycamFOV').value;
             const disableRichPresenceChecked = document.querySelector('input[name="disableRichPresence"]:checked');
@@ -567,6 +650,14 @@
 
             if (splitByDateChecked) {
                 config.picture_output_split_by_date = JSON.parse(splitByDateChecked.value);
+            }
+
+            if (spoutResolutionWidth) {
+                config.camera_spout_res_width = Number(spoutResolutionWidth);
+            }
+
+            if (spoutResolutionHeight) {
+                config.camera_spout_res_height = Number(spoutResolutionHeight);
             }
 
             if (steadycamFOV && steadycamFOVInputChanged) {
