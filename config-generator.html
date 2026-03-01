@@ -341,341 +341,341 @@
 </div>
 
 <script type="text/javascript">
-    document.addEventListener('DOMContentLoaded', () => {
-        bulmaSlider.attach();
-        hljs.highlightAll();
+	document.addEventListener('DOMContentLoaded', () => {
+		bulmaSlider.attach();
+		hljs.highlightAll();
 
-        const checkbox = document.getElementById('featureDescriptionToggle');
-        const targetElements = document.querySelectorAll('.feature-description');
+		const checkbox = document.getElementById('featureDescriptionToggle');
+		const targetElements = document.querySelectorAll('.feature-description');
 
-        checkbox.addEventListener('change', () => {
-            targetElements.forEach(element => {
-                if (checkbox.checked) {
-                    element.classList.remove("is-hidden");
-                } else {
-                    element.classList.add("is-hidden");
-                }
-            });
-        });
+		checkbox.addEventListener('change', () => {
+			targetElements.forEach(element => {
+				if (checkbox.checked) {
+					element.classList.remove("is-hidden");
+				} else {
+					element.classList.add("is-hidden");
+				}
+			});
+		});
 
-        const form = document.getElementById('configForm');
+		const form = document.getElementById('configForm');
 
-        const steadycamFOVInput = document.getElementById('steadycamFOV');
-        let steadycamFOVInputChanged = false;
+		const steadycamFOVInput = document.getElementById('steadycamFOV');
+		let steadycamFOVInputChanged = false;
 
-        form.addEventListener('change', (event) => {
-            if (event.target === steadycamFOVInput) {
-                steadycamFOVInputChanged = true;
-            }
+		form.addEventListener('change', (event) => {
+			if (event.target === steadycamFOVInput) {
+				steadycamFOVInputChanged = true;
+			}
 
-            updatePreview();
-        });
+			updatePreview();
+		});
 
-        const cacheSizeInputs = document.querySelectorAll('.validate-value-range');
+		const cacheSizeInputs = document.querySelectorAll('.validate-value-range');
 
-        cacheSizeInputs.forEach(input => {
-            input.addEventListener('blur', () => {
-                if (input.value === "") {
-                    input.classList.remove('is-success');
-                } else {
-                    let value = parseInt(input.value, 10);
-                    let minimum = parseInt(input.getAttribute('data-minimum-value'), 10);
-                    if (value < minimum) {
-                        input.value = minimum;
-                    } else if (input.hasAttribute('data-maximum-value')) {
-                        let maximum = parseInt(input.getAttribute('data-maximum-value'), 10);
-                        if (value > maximum) {
-                            input.value = maximum;
-                        }
-                    }
+		cacheSizeInputs.forEach(input => {
+			input.addEventListener('blur', () => {
+				if (input.value === "") {
+					input.classList.remove('is-success');
+				} else {
+					let value = parseInt(input.value, 10);
+					let minimum = parseInt(input.getAttribute('data-minimum-value'), 10);
+					if (value < minimum) {
+						input.value = minimum;
+					} else if (input.hasAttribute('data-maximum-value')) {
+						let maximum = parseInt(input.getAttribute('data-maximum-value'), 10);
+						if (value > maximum) {
+							input.value = maximum;
+						}
+					}
 
-                    input.classList.add('is-success');
+					input.classList.add('is-success');
 
-                    updatePreview();
-                }
-            });
-        });
+					updatePreview();
+				}
+			});
+		});
 
-        const folderInputs = document.querySelectorAll('.validate-folder-input');
+		const folderInputs = document.querySelectorAll('.validate-folder-input');
 
-        folderInputs.forEach(input => {
-            input.addEventListener('blur', () => {
-                let value = input.value;
-                if (value) {
-                    value = value.replace(/\\/g, '/');
-                    if (!value.endsWith('/')) {
-                        value += '/';
-                    }
-                    input.value = value;
-                    input.classList.add('is-success');
-                }
+		folderInputs.forEach(input => {
+			input.addEventListener('blur', () => {
+				let value = input.value;
+				if (value) {
+					value = value.replace(/\\/g, '/');
+					if (!value.endsWith('/')) {
+						value += '/';
+					}
+					input.value = value;
+					input.classList.add('is-success');
+				}
 
-                updatePreview();
-            });
-        });
+				updatePreview();
+			});
+		});
 
-        const cameraContainer = document.getElementById('cameraResolutionSelector');
-        const cameraWidthInput = document.getElementById('cameraResolutionWidth');
-        const cameraHeightInput = document.getElementById('cameraResolutionHeight');
+		const cameraContainer = document.getElementById('cameraResolutionSelector');
+		const cameraWidthInput = document.getElementById('cameraResolutionWidth');
+		const cameraHeightInput = document.getElementById('cameraResolutionHeight');
 
-        cameraContainer.addEventListener('click', (event) => {
-            if (event.target.classList.contains('button')) {
-                const resolution = event.target.textContent.trim();
-                switch (resolution) {
-                    case '720p':
-                        cameraWidthInput.value = '1280';
-                        cameraHeightInput.value = '720';
-                        break;
-                    case '1080p':
-                        cameraWidthInput.value = '1920';
-                        cameraHeightInput.value = '1080';
-                        break;
-                    case '1440p':
-                        cameraWidthInput.value = '2560';
-                        cameraHeightInput.value = '1440';
-                        break;
-                    case '2160p':
-                        cameraWidthInput.value = '3840';
-                        cameraHeightInput.value = '2160';
-                        break;
-                    case '4320p':
-                        cameraWidthInput.value = '7680';
-                        cameraHeightInput.value = '4320';
-                        break;
-                    default:
-                        cameraWidthInput.value = '';
-                        cameraHeightInput.value = '';
-                        break;
-                }
+		cameraContainer.addEventListener('click', (event) => {
+			if (event.target.classList.contains('button')) {
+				const resolution = event.target.textContent.trim();
+				switch (resolution) {
+					case '720p':
+						cameraWidthInput.value = '1280';
+						cameraHeightInput.value = '720';
+						break;
+					case '1080p':
+						cameraWidthInput.value = '1920';
+						cameraHeightInput.value = '1080';
+						break;
+					case '1440p':
+						cameraWidthInput.value = '2560';
+						cameraHeightInput.value = '1440';
+						break;
+					case '2160p':
+						cameraWidthInput.value = '3840';
+						cameraHeightInput.value = '2160';
+						break;
+					case '4320p':
+						cameraWidthInput.value = '7680';
+						cameraHeightInput.value = '4320';
+						break;
+					default:
+						cameraWidthInput.value = '';
+						cameraHeightInput.value = '';
+						break;
+				}
 
-                cameraWidthInput.classList.add('is-success');
-                cameraHeightInput.classList.add('is-success');
+				cameraWidthInput.classList.add('is-success');
+				cameraHeightInput.classList.add('is-success');
 
-                updatePreview();
-            }
-        });
+				updatePreview();
+			}
+		});
 
-        const screenshotContainer = document.getElementById('screenshotResolutionSelector');
-        const screenshotWidthInput = document.getElementById('screenshotResolutionWidth');
-        const screenshotHeightInput = document.getElementById('screenshotResolutionHeight');
+		const screenshotContainer = document.getElementById('screenshotResolutionSelector');
+		const screenshotWidthInput = document.getElementById('screenshotResolutionWidth');
+		const screenshotHeightInput = document.getElementById('screenshotResolutionHeight');
 
-        screenshotContainer.addEventListener('click', (event) => {
-            if (event.target.classList.contains('button')) {
-                const resolution = event.target.textContent.trim();
-                switch (resolution) {
-                    case '720p':
-                        screenshotWidthInput.value = '1280';
-                        screenshotHeightInput.value = '720';
-                        break;
-                    case '1080p':
-                        screenshotWidthInput.value = '1920';
-                        screenshotHeightInput.value = '1080';
-                        break;
-                    case '1440p':
-                        screenshotWidthInput.value = '2560';
-                        screenshotHeightInput.value = '1440';
-                        break;
-                    case '2160p':
-                        screenshotWidthInput.value = '3840';
-                        screenshotHeightInput.value = '2160';
-                        break;
-                    case '4320p':
-                        screenshotWidthInput.value = '7680';
-                        screenshotHeightInput.value = '4320';
-                        break;
-                    default:
-                        screenshotWidthInput.value = '';
-                        screenshotHeightInput.value = '';
-                        break;
-                }
+		screenshotContainer.addEventListener('click', (event) => {
+			if (event.target.classList.contains('button')) {
+				const resolution = event.target.textContent.trim();
+				switch (resolution) {
+					case '720p':
+						screenshotWidthInput.value = '1280';
+						screenshotHeightInput.value = '720';
+						break;
+					case '1080p':
+						screenshotWidthInput.value = '1920';
+						screenshotHeightInput.value = '1080';
+						break;
+					case '1440p':
+						screenshotWidthInput.value = '2560';
+						screenshotHeightInput.value = '1440';
+						break;
+					case '2160p':
+						screenshotWidthInput.value = '3840';
+						screenshotHeightInput.value = '2160';
+						break;
+					case '4320p':
+						screenshotWidthInput.value = '7680';
+						screenshotHeightInput.value = '4320';
+						break;
+					default:
+						screenshotWidthInput.value = '';
+						screenshotHeightInput.value = '';
+						break;
+				}
 
-                screenshotWidthInput.classList.add('is-success');
-                screenshotHeightInput.classList.add('is-success');
+				screenshotWidthInput.classList.add('is-success');
+				screenshotHeightInput.classList.add('is-success');
 
-                updatePreview();
-            }
-        });
+				updatePreview();
+			}
+		});
 
-        const spoutContainer = document.getElementById('spoutResolutionSelector');
-        const spoutWidthInput = document.getElementById('spoutResolutionWidth');
-        const spoutHeightInput = document.getElementById('spoutResolutionHeight');
+		const spoutContainer = document.getElementById('spoutResolutionSelector');
+		const spoutWidthInput = document.getElementById('spoutResolutionWidth');
+		const spoutHeightInput = document.getElementById('spoutResolutionHeight');
 
-        spoutContainer.addEventListener('click', (event) => {
-            if (event.target.classList.contains('button')) {
-                const resolution = event.target.textContent.trim();
-                switch (resolution) {
-                    case '720p':
-                        spoutWidthInput.value = '1280';
-                        spoutHeightInput.value = '720';
-                        break;
-                    case '1080p':
-                        spoutWidthInput.value = '1920';
-                        spoutHeightInput.value = '1080';
-                        break;
-                    case '1440p':
-                        spoutWidthInput.value = '2560';
-                        spoutHeightInput.value = '1440';
-                        break;
-                    case '2160p':
-                        spoutWidthInput.value = '3840';
-                        spoutHeightInput.value = '2160';
-                        break;
-                    default:
-                        spoutWidthInput.value = '';
-                        spoutHeightInput.value = '';
-                        break;
-                }
+		spoutContainer.addEventListener('click', (event) => {
+			if (event.target.classList.contains('button')) {
+				const resolution = event.target.textContent.trim();
+				switch (resolution) {
+					case '720p':
+						spoutWidthInput.value = '1280';
+						spoutHeightInput.value = '720';
+						break;
+					case '1080p':
+						spoutWidthInput.value = '1920';
+						spoutHeightInput.value = '1080';
+						break;
+					case '1440p':
+						spoutWidthInput.value = '2560';
+						spoutHeightInput.value = '1440';
+						break;
+					case '2160p':
+						spoutWidthInput.value = '3840';
+						spoutHeightInput.value = '2160';
+						break;
+					default:
+						spoutWidthInput.value = '';
+						spoutHeightInput.value = '';
+						break;
+				}
 
-                spoutWidthInput.classList.add('is-success');
-                spoutHeightInput.classList.add('is-success');
+				spoutWidthInput.classList.add('is-success');
+				spoutHeightInput.classList.add('is-success');
 
-                updatePreview();
-            }
-        });
+				updatePreview();
+			}
+		});
 
-        const copyContentsOnClickElements = document.querySelectorAll('.copy-contents-on-click');
+		const copyContentsOnClickElements = document.querySelectorAll('.copy-contents-on-click');
 
-        copyContentsOnClickElements.forEach(element => {
-            element.addEventListener('click', function () {
-                const text = element.textContent;
-                const ariaLabel = element.getAttribute('aria-label');
+		copyContentsOnClickElements.forEach(element => {
+			element.addEventListener('click', function () {
+				const text = element.textContent;
+				const ariaLabel = element.getAttribute('aria-label');
 
-                navigator.clipboard.writeText(text).then(() => {
-                    element.classList.add('hint--success');
-                    element.setAttribute('aria-label', 'Copied!');
-                    setTimeout(() => {
-                        element.classList.remove('hint--success');
-                        element.setAttribute('aria-label', ariaLabel);
-                    }, 500);
-                }).catch(() => {
-                    element.classList.add('hint--error');
-                    element.setAttribute('aria-label', 'Failed to copy!');
-                    setTimeout(() => {
-                        element.classList.remove('hint--error');
-                        element.setAttribute('aria-label', ariaLabel);
-                    }, 500);
-                });
-            });
-        });
+				navigator.clipboard.writeText(text).then(() => {
+					element.classList.add('hint--success');
+					element.setAttribute('aria-label', 'Copied!');
+					setTimeout(() => {
+						element.classList.remove('hint--success');
+						element.setAttribute('aria-label', ariaLabel);
+					}, 500);
+				}).catch(() => {
+					element.classList.add('hint--error');
+					element.setAttribute('aria-label', 'Failed to copy!');
+					setTimeout(() => {
+						element.classList.remove('hint--error');
+						element.setAttribute('aria-label', ariaLabel);
+					}, 500);
+				});
+			});
+		});
 
-        const deleteButtons = document.querySelectorAll('.delete');
+		const deleteButtons = document.querySelectorAll('.delete');
 
-        deleteButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const parentField = button.closest('.field');
+		deleteButtons.forEach(button => {
+			button.addEventListener('click', () => {
+				const parentField = button.closest('.field');
 
-                if (parentField) {
-                    const radioInputs = parentField.querySelectorAll('input[type="radio"]');
-                    const rangeInput = parentField.querySelector('input[type="range"]');
-                    const output = parentField.querySelector('output');
+				if (parentField) {
+					const radioInputs = parentField.querySelectorAll('input[type="radio"]');
+					const rangeInput = parentField.querySelector('input[type="range"]');
+					const output = parentField.querySelector('output');
 
-                    radioInputs.forEach(input => {
-                        input.checked = false;
-                    });
+					radioInputs.forEach(input => {
+						input.checked = false;
+					});
 
-                    if (rangeInput) {
-                        rangeInput.value = rangeInput.defaultValue;
-                        if (output) {
-                            output.textContent = "0";
-                        }
-                        steadycamFOVInputChanged = false;
-                    }
-                }
+					if (rangeInput) {
+						rangeInput.value = rangeInput.defaultValue;
+						if (output) {
+							output.textContent = "0";
+						}
+						steadycamFOVInputChanged = false;
+					}
+				}
 
-                updatePreview();
-            });
-        });
+				updatePreview();
+			});
+		});
 
-        document.getElementById('downloadButton').addEventListener('click', () => {
-            const jsonConfig = generateJSON();
-            const blob = new Blob([jsonConfig], {type: "application/json"});
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = "config.json";
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-        });
+		document.getElementById('downloadButton').addEventListener('click', () => {
+			const jsonConfig = generateJSON();
+			const blob = new Blob([jsonConfig], {type: "application/json"});
+			const url = URL.createObjectURL(blob);
+			const a = document.createElement('a');
+			a.href = url;
+			a.download = "config.json";
+			document.body.appendChild(a);
+			a.click();
+			document.body.removeChild(a);
+			URL.revokeObjectURL(url);
+		});
 
-        function generateJSON() {
-            const cacheSize = document.getElementById('cacheSize').value;
-            const cacheExpiry = document.getElementById('cacheExpiry').value;
-            const cacheDirectory = document.getElementById('cacheDirectory').value;
-            const cameraResolutionWidth = document.getElementById('cameraResolutionWidth').value;
-            const cameraResolutionHeight = document.getElementById('cameraResolutionHeight').value;
-            const screenshotResolutionWidth = document.getElementById('screenshotResolutionWidth').value;
-            const screenshotResolutionHeight = document.getElementById('screenshotResolutionHeight').value;
-            const pictureOutputFolder = document.getElementById('pictureOutputFolder').value;
-            const spoutResolutionWidth = document.getElementById('spoutResolutionWidth').value;
-            const spoutResolutionHeight = document.getElementById('spoutResolutionHeight').value;
-            const splitByDateChecked = document.querySelector('input[name="splitByDate"]:checked');
-            const steadycamFOV = document.getElementById('steadycamFOV').value;
-            const disableRichPresenceChecked = document.querySelector('input[name="disableRichPresence"]:checked');
+		function generateJSON() {
+			const cacheSize = document.getElementById('cacheSize').value;
+			const cacheExpiry = document.getElementById('cacheExpiry').value;
+			const cacheDirectory = document.getElementById('cacheDirectory').value;
+			const cameraResolutionWidth = document.getElementById('cameraResolutionWidth').value;
+			const cameraResolutionHeight = document.getElementById('cameraResolutionHeight').value;
+			const screenshotResolutionWidth = document.getElementById('screenshotResolutionWidth').value;
+			const screenshotResolutionHeight = document.getElementById('screenshotResolutionHeight').value;
+			const pictureOutputFolder = document.getElementById('pictureOutputFolder').value;
+			const spoutResolutionWidth = document.getElementById('spoutResolutionWidth').value;
+			const spoutResolutionHeight = document.getElementById('spoutResolutionHeight').value;
+			const splitByDateChecked = document.querySelector('input[name="splitByDate"]:checked');
+			const steadycamFOV = document.getElementById('steadycamFOV').value;
+			const disableRichPresenceChecked = document.querySelector('input[name="disableRichPresence"]:checked');
 
-            const config = {};
+			const config = {};
 
-            if (cacheSize) {
-                config.cache_size = Number(cacheSize);
-            }
+			if (cacheSize) {
+				config.cache_size = Number(cacheSize);
+			}
 
-            if (cacheExpiry) {
-                config.cache_expiry_delay = Number(cacheExpiry);
-            }
+			if (cacheExpiry) {
+				config.cache_expiry_delay = Number(cacheExpiry);
+			}
 
-            if (cacheDirectory) {
-                config.cache_directory = cacheDirectory;
-            }
+			if (cacheDirectory) {
+				config.cache_directory = cacheDirectory;
+			}
 
-            if (cameraResolutionWidth) {
-                config.camera_res_width = Number(cameraResolutionWidth);
-            }
+			if (cameraResolutionWidth) {
+				config.camera_res_width = Number(cameraResolutionWidth);
+			}
 
-            if (cameraResolutionHeight) {
-                config.camera_res_height = Number(cameraResolutionHeight);
-            }
+			if (cameraResolutionHeight) {
+				config.camera_res_height = Number(cameraResolutionHeight);
+			}
 
-            if (screenshotResolutionWidth) {
-                config.screenshot_res_width = Number(screenshotResolutionWidth);
-            }
+			if (screenshotResolutionWidth) {
+				config.screenshot_res_width = Number(screenshotResolutionWidth);
+			}
 
-            if (screenshotResolutionHeight) {
-                config.screenshot_res_height = Number(screenshotResolutionHeight);
-            }
+			if (screenshotResolutionHeight) {
+				config.screenshot_res_height = Number(screenshotResolutionHeight);
+			}
 
-            if (pictureOutputFolder) {
-                config.picture_output_folder = pictureOutputFolder;
-            }
+			if (pictureOutputFolder) {
+				config.picture_output_folder = pictureOutputFolder;
+			}
 
-            if (splitByDateChecked) {
-                config.picture_output_split_by_date = JSON.parse(splitByDateChecked.value);
-            }
+			if (splitByDateChecked) {
+				config.picture_output_split_by_date = JSON.parse(splitByDateChecked.value);
+			}
 
-            if (spoutResolutionWidth) {
-                config.camera_spout_res_width = Number(spoutResolutionWidth);
-            }
+			if (spoutResolutionWidth) {
+				config.camera_spout_res_width = Number(spoutResolutionWidth);
+			}
 
-            if (spoutResolutionHeight) {
-                config.camera_spout_res_height = Number(spoutResolutionHeight);
-            }
+			if (spoutResolutionHeight) {
+				config.camera_spout_res_height = Number(spoutResolutionHeight);
+			}
 
-            if (steadycamFOV && steadycamFOVInputChanged) {
-                config.fpv_steadycam_fov = JSON.parse(steadycamFOV);
-            }
+			if (steadycamFOV && steadycamFOVInputChanged) {
+				config.fpv_steadycam_fov = JSON.parse(steadycamFOV);
+			}
 
-            if (disableRichPresenceChecked) {
-                config.disableRichPresence = JSON.parse(disableRichPresenceChecked.value);
-            }
+			if (disableRichPresenceChecked) {
+				config.disableRichPresence = JSON.parse(disableRichPresenceChecked.value);
+			}
 
-            return JSON.stringify(config, null, 4);
-        }
+			return JSON.stringify(config, null, 4);
+		}
 
-        function updatePreview() {
-            const jsonPreview = document.getElementById('jsonPreview');
-            jsonPreview.innerHTML = hljs.highlight(generateJSON(), {language: 'json'}).value;
-        }
-    });
+		function updatePreview() {
+			const jsonPreview = document.getElementById('jsonPreview');
+			jsonPreview.innerHTML = hljs.highlight(generateJSON(), {language: 'json'}).value;
+		}
+	});
 </script>
 
 </body>
